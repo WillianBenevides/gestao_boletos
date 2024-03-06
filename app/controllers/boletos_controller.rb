@@ -1,4 +1,3 @@
-# app/controllers/boletos_controller.rb
 require 'httparty'
 
 class BoletosController < ApplicationController
@@ -130,8 +129,7 @@ end
       'Content-Type' => 'application/json',
       'Authorization' => 'Bearer IkeIEJiKDA2m0wiH3aH4jSkWyXU8Jy4WDoGRc_Gp5g0'
     }
-  
-    # Ajustar os campos enviados para incluir apenas os necessários
+
     boleto_params = {
       amount: boleto[:amount],
       description: boleto[:description],
@@ -156,7 +154,6 @@ end
   end
 
   def criar_boleto(boleto_params)
-    # Lógica para criar um boleto na API da Kobana
     uri = URI.parse('https://api-sandbox.kobana.com.br/v1/bank_billets')
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
