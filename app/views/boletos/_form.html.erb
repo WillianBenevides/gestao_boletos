@@ -1,0 +1,14 @@
+<!-- app/views/boletos/_form.html.erb -->
+
+<%= form_with(model: boleto, url: boletos_path, method: :post) do |form| %>
+  <%= form.label :numero %>
+  <%= form.text_field :numero %>
+
+  <%= form.label :valor %>
+  <%= form.text_field :valor %>
+
+  <%= form.label :status %>
+  <%= form.text_field :status %>
+
+  <%= form.submit 'Criar Boleto' %>
+<% end %>

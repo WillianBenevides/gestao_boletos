@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Criar Boleto</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+
+    .container {
+      background-color: #ffffff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 50px;
+    }
+
+    h1 {
+      color: #007bff;
+    }
+
+    #error_explanation {
+      color: #dc3545;
+      margin-bottom: 20px;
+    }
+
+    .field {
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    .actions {
+      margin-top: 20px;
+    }
+
+    .btn-primary {
+      background-color: #007bff;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background-color: #0056b3;
+    }
+
+    .btn-secondary {
+      background-color: #6c757d;
+      border: none;
+    }
+
+    .btn-secondary:hover {
+      background-color: #545b62;
+    }
+
+    .fade-in {
+      animation: fadeIn ease-in-out 0.5s;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container mt-5 fade-in">
+    <h1 class="text-center mb-4">Criar Boleto</h1>
+
+    <%= form_with(model: @boleto, url: boletos_path, local: true) do |form| %>
+      <% if @boleto.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@boleto.errors.count, "error") %> prohibited this boleto from being saved:</h2>
+
+          <ul>
+            <% @boleto.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="field">
+        <%= form.label :amount %>
+        <%= form.text_field :amount, class: "form-control" %>
+      </div>
+
+      <div class="field">
+        <%= form.label :description %>
+        <%= form.text_field :description, class: "form-control" %>
+      </div>
+
+      <div class="field">
+        <%= form.label :customer_person_name %>
+        <%= form.text_field :customer_person_name, class: "form-control" %>
+      </div>
+
+      <div class="field">
+        <%= form.label :customer_cnpj_cpf %>
+        <%= form.text_field :customer_cnpj_cpf, class: "form-control" %>
+      </div>
+
+      <div class="field">
+        <%= form.label :customer_zipcode %>
+        <%= form.text_field :customer_zipcode, class: "form-control" %>
+      </div>
+
+      <div class="field">
+        <%= form.label :expire_at %>
+        <%= form.date_field :expire_at, class: "form-control" %>
+      </div>
+
+      <div class="field">
+        <%= form.label :customer_address %>
+        <%= form.text_field :customer_address, class: "form-control" %>
+      </div>
+
+      <div class="field">
+        <%= form.label :customer_neighborhood %>
+        <%= form.text_field :customer_neighborhood, class: "form-control" %>
+      </div>
+
+      <div class="field">
+        <%= form.label :customer_city_name %>
+        <%= form.text_field :customer_city_name, class: "form-control" %>
+      </div>
+
+      <div class="field">
+        <%= form.label :customer_state %>
+        <%= form.text_field :customer_state, class: "form-control" %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit "Criar Boleto", class: "btn btn-primary" %>
+        <%= link_to "Voltar para a lista de boletos", boletos_path, class: "btn btn-secondary" %>
+      </div>
+    <% end %>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const container = document.querySelector('.container');
+      container.classList.add('fade-in');
+    });
+  </script>
+</body>
+
+</html>

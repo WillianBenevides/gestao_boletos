@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista de Boletos</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+
+    .container {
+      background-color: #ffffff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 50px;
+    }
+
+    h1 {
+      color: #007bff;
+    }
+
+    .btn-primary {
+      background-color: #007bff;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background-color: #0056b3;
+    }
+
+    .table {
+      margin-top: 20px;
+    }
+
+    .thead-dark th {
+      background-color: #343a40;
+      color: #ffffff;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .fade-in {
+      animation: fadeIn ease-in-out 0.5s;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container mt-5 fade-in">
+    <h1 class="text-center mb-4">Lista de Boletos</h1>
+
+    <%= link_to "Novo Boleto", new_boleto_path, class: "btn btn-primary mb-3" %>
+
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Número</th>
+          <th scope="col">Valor</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Descrição</th> 
+        </tr>
+      </thead>
+      <tbody>
+        <% if @boletos.present? %>
+        <% @boletos.each do |boleto| %>
+          <tr>
+            <td><%= boleto.id %></td>
+            <td><%= boleto.amount %></td>
+            <td><%= boleto.customer_person_name %></td>
+            <td><%= boleto.description %></td>
+            <td>
+              <%= button_to 'Deletar', boleto, method: :delete, data: { confirm: 'Você tem certeza?' } %>
+            </td>
+          </tr>
+        <% end %>
+      <% else %>
+        <tr>
+          <td colspan="4" class="text-center">Nenhum boleto encontrado.</td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const container = document.querySelector('.container');
+      container.classList.add('fade-in');
+    });
+  </script>
+</body>
+
+</html>
